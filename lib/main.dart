@@ -30,8 +30,9 @@ class PageTransitionApp extends StatelessWidget {
             // return getSlideTransition(const AboutScreen());
             // return getScaleTransition(const AboutScreen());
             // return getRatationTransition(const AboutScreen());
+            // return getFadeTransition(const AboutScreen());
 
-            return getFadeTransition(const AboutScreen());
+            return getRotationFadeTransition(const AboutScreen());
           default:
             return null;
         }

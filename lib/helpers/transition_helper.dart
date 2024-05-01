@@ -139,3 +139,42 @@ PageRouteBuilder getFadeTransition(Widget screen) {
     },
   );
 }
+
+// Transición de tipo Rotación con Opacidad (Mezclar animaciones)
+PageRouteBuilder getRotationFadeTransition(Widget screen) {
+  return PageRouteBuilder(
+    // Página a construir (a mostrar)
+    pageBuilder: (context, animation, secondaryAnimation) => screen,
+    // Duración de la transición
+    transitionDuration: const Duration(milliseconds: 800),
+    // Construir la transición
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      // Describe cómo se debe realizar la transición de rotación del widget a lo largo del tiempo
+      final turns = Tween<double>(
+        begin: 0.8,
+        end: 1.0,
+      ).animate(CurvedAnimation(
+        parent: animation,
+        curve: Curves.bounceOut,
+      ));
+
+      // Describe cómo se debe realizar la transición de opacidad del widget a lo largo del tiempo
+      final opacity = Tween<double>(
+        begin: 0.0,
+        end: 1.0,
+      ).animate(CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeInExpo,
+      ));
+
+      // Mezclar transiciones de Rotación y Opacidad
+      return RotationTransition(
+        turns: turns,
+        child: FadeTransition(
+          opacity: opacity,
+          child: child,
+        ),
+      );
+    },
+  );
+}
