@@ -69,3 +69,38 @@ PageRouteBuilder getScaleTransition(Widget screen) {
     },
   );
 }
+
+// Transición de tipo Rotación
+PageRouteBuilder getRatationTransition(Widget screen) {
+  return PageRouteBuilder(
+    // Página a construir (a mostrar)
+    pageBuilder: (context, animation, secondaryAnimation) => screen,
+    // Duración de la transición
+    transitionDuration: const Duration(milliseconds: 300),
+    // Construir la transición
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      // Angulo inicial de rotación
+      const begin = 0.0;
+      // Número de vueltas completas
+      const end = 1.0;
+      // Tipo de animación (suave, rebote, etc)
+      final curvedAnimation = CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeInOut,
+      );
+
+      // Describe cómo se debe realizar la transición de rotación del widget a lo largo del tiempo (número de vueltas)
+      final position = Tween<double>(
+        begin: begin,
+        end: end,
+      ).animate(curvedAnimation);
+
+      // RotationTransition anima la rotación de otro widget. Permite girar un widget alrededor de su centro de manera animada.
+      return RotationTransition(
+        turns: position,
+        child: child,
+        //alignment: Alignment.centerLeft,
+      );
+    },
+  );
+}

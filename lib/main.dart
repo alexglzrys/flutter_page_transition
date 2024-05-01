@@ -28,7 +28,8 @@ class PageTransitionApp extends StatelessWidget {
             // Invocar esta página con un tipo de transición personalizda
 
             // return getSlideTransition(const AboutScreen());
-            return getScaleTransition(const AboutScreen());
+            // return getScaleTransition(const AboutScreen());
+            return getRatationTransition(const AboutScreen());
           default:
             return null;
         }
