@@ -13,7 +13,7 @@ import 'package:page_transition_flutter_app/main.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const PageTransitionApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
