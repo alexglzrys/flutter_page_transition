@@ -56,14 +56,14 @@ PageRouteBuilder getScaleTransition(Widget screen) {
       );
 
       // Describe cómo se debe realizar la transición de escala o tamaño del widget a lo largo del tiempo
-      final position = Tween<double>(
+      final scale = Tween<double>(
         begin: begin,
         end: end,
       ).animate(curvedAnimation);
 
       // ScaleTransition anima la escala (tamaño) de otro widget. Permite cambiar el tamaño de un widget de forma animada, ya sea para hacerlo más grande o más pequeño.
       return ScaleTransition(
-        scale: position,
+        scale: scale,
         child: child,
       );
     },
@@ -90,14 +90,49 @@ PageRouteBuilder getRatationTransition(Widget screen) {
       );
 
       // Describe cómo se debe realizar la transición de rotación del widget a lo largo del tiempo (número de vueltas)
-      final position = Tween<double>(
+      final turns = Tween<double>(
         begin: begin,
         end: end,
       ).animate(curvedAnimation);
 
       // RotationTransition anima la rotación de otro widget. Permite girar un widget alrededor de su centro de manera animada.
       return RotationTransition(
-        turns: position,
+        turns: turns,
+        child: child,
+        //alignment: Alignment.centerLeft,
+      );
+    },
+  );
+}
+
+// Transición de tipo Desvanecimiento u Opacidad (Fade)
+PageRouteBuilder getFadeTransition(Widget screen) {
+  return PageRouteBuilder(
+    // Página a construir (a mostrar)
+    pageBuilder: (context, animation, secondaryAnimation) => screen,
+    // Duración de la transición
+    transitionDuration: const Duration(milliseconds: 900),
+    // Construir la transición
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      // Visibilidad al inicio de la transición
+      const begin = 0.0;
+      // Visibilidad al final de la transición
+      const end = 1.0;
+      // Tipo de animación (suave, rebote, etc)
+      final curvedAnimation = CurvedAnimation(
+        parent: animation,
+        curve: Curves.linearToEaseOut,
+      );
+
+      // Describe cómo se debe realizar la transición de opacidad del widget a lo largo del tiempo (invisible a visible)
+      final opacity = Tween<double>(
+        begin: begin,
+        end: end,
+      ).animate(curvedAnimation);
+
+      // FadeTransition anima la opacidad de otro widget. Permite cambiar gradualmente la opacidad de un widget de forma animada, haciéndolo más visible o menos visible.
+      return FadeTransition(
+        opacity: opacity,
         child: child,
         //alignment: Alignment.centerLeft,
       );
