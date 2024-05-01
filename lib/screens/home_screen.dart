@@ -16,7 +16,10 @@ class HomeScreen extends StatelessWidget {
         child: Text('Home Screen'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          // Navegar a la ruta de 'about'
+          Navigator.pushNamed(context, 'about');
+        },
         backgroundColor: const Color(0XFF7A3B69),
         child: const Icon(Icons.album_outlined),
       ),
