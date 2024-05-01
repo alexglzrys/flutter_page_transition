@@ -35,3 +35,37 @@ PageRouteBuilder getSlideTransition(Widget screen) {
     },
   );
 }
+
+// Transición de tipo Escala
+PageRouteBuilder getScaleTransition(Widget screen) {
+  return PageRouteBuilder(
+    // Página a construir (a mostrar)
+    pageBuilder: (context, animation, secondaryAnimation) => screen,
+    // Duración de la transición
+    transitionDuration: const Duration(milliseconds: 300),
+    // Construir la transición
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      // Factor de escala donde comienza la transición
+      const begin = 0.0;
+      // Factor de escala dónde termina la transición
+      const end = 1.0;
+      // Tipo de animación (suave, rebote, etc)
+      final curvedAnimation = CurvedAnimation(
+        parent: animation,
+        curve: Curves.elasticInOut,
+      );
+
+      // Describe cómo se debe realizar la transición de escala o tamaño del widget a lo largo del tiempo
+      final position = Tween<double>(
+        begin: begin,
+        end: end,
+      ).animate(curvedAnimation);
+
+      // ScaleTransition anima la escala (tamaño) de otro widget. Permite cambiar el tamaño de un widget de forma animada, ya sea para hacerlo más grande o más pequeño.
+      return ScaleTransition(
+        scale: position,
+        child: child,
+      );
+    },
+  );
+}

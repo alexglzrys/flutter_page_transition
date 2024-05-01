@@ -26,7 +26,9 @@ class PageTransitionApp extends StatelessWidget {
             return MaterialPageRoute(builder: (context) => const HomeScreen());
           case 'about':
             // Invocar esta página con un tipo de transición personalizda
-            return getSlideTransition(const AboutScreen());
+
+            // return getSlideTransition(const AboutScreen());
+            return getScaleTransition(const AboutScreen());
           default:
             return null;
         }
